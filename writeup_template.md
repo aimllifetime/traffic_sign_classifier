@@ -45,30 +45,26 @@ randomly select one image from X_train and display it on screen.
 
 #### 1. Preprocessing images: two techniques are applied for pre-processing image such as grayscale and normalize image
 
-_pre_process_batch_image_ function takes an array of images as input such as _X_train_. It loops through each image with grayscale and normalize. 
+_pre_process_batch_image_ function takes an array of images as input such as _X_train_. It loops through each image with _grayscale_ and _normalize_grayscale_. 
 
-grayscale returns an image using cv library: cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+_grayscale_ returns an image using cv library: cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-normalize_grayscale returns image using: _a + ( ( (image_data - grayscale_min)*(b - a) )/( grayscale_max - grayscale_min ) )_ where a = 0.1 and b = 0.9
+_normalize_grayscale_ returns image using: _a + ( ( (image_data - grayscale_min)*(b - a) )/( grayscale_max - grayscale_min ) )_ where a = 0.1 and b = 0.9
 
+It is necessary to reshape of normalized image to(32, 32, 1) from (32, 32). Later LeNet assumes input channel parameter.
 
-As a first step, I decided to convert the images to grayscale because ...
+Converting the images to grayscale helps in couple of ways:
+  * 
+  *
+  *
+Normalizing the image data has benefits as follows
+  *
+  * 
+  *
 
-Here is an example of a traffic sign image before and after grayscaling.
-
-![alt text][image2]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
 
 ![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+ 
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
