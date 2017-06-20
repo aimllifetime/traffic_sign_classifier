@@ -17,17 +17,17 @@ The goals / steps of this project are the following:
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### Each rubric point is described in following:
 
 You're reading it! and here is a link to my [project code](https://github.com/aimllifetime/traffic_sign_classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. the data set is read into program using pickle.load library for _X_train, X_valid and X_test_. Then the each pickle data is used to extract the image and its labels for example: X_train, y_train
+#### 1. the data set is read into program using pickle.load library for _X_train, X_valid and X_test_. Then the each pickle data is used to extract the images and theirs labels for example: X_train, y_train
 
-Use python array "len" fuction, on X_train and other variable, we have following summary information of data set.
+Use python array "len" fuction on X_train and other variables, we have following summary information of data set.
 
 * The size of training set is = len(X_train) = 34799
 * The size of the validation set is = len(X_valid) = 
@@ -35,15 +35,22 @@ Use python array "len" fuction, on X_train and other variable, we have following
 * The shape of a traffic sign image is = X_train[0].shape = (32, 32, 3)
 * The number of unique classes/labels in the data set is = 43   <= this is read from signnames.csv on how many of entries of records.
 
-####2. Include an exploratory visualization of the dataset.
+#### 2. Include an exploratory visualization of the dataset.
 
 randomly select one image from X_train and display it on screen.
 
 ![alt text][image1]
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Preprocessing images: two techniques are applied for pre-processing image such as grayscale and normalize image
+
+_pre_process_batch_image_ function takes an array of images as input such as _X_train_. It loops through each image with grayscale and normalize. 
+
+grayscale returns an image using cv library: cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+normalize_grayscale returns image using: _a + ( ( (image_data - grayscale_min)*(b - a) )/( grayscale_max - grayscale_min ) )_ where a = 0.1 and b = 0.9
+
 
 As a first step, I decided to convert the images to grayscale because ...
 
