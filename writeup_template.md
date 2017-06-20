@@ -111,20 +111,29 @@ My final model consisted of the following layers:
 #### 4. following describe approaches taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
 My final model results were:
-* training set accuracy of 0.94
-* validation set accuracy of 0.94
-* test set accuracy of 
+* training set accuracy of 0.939
+* validation set accuracy of 0.939
+* test set accuracy of 9.38
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+LeNet with 3 channel was tried out first without dropout, image grayscale and normalization. The accuracy is about close to 0.9 only
 * What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+it seems overfit the training. 
+* How was the architecture adjusted and why was it adjusted? 
+the dropout was added to each layer of original LeNet with probability of 0.7
 * Which parameters were tuned? How were they adjusted and why?
+dropout tried 0.5 and 0.8 etc. found 0.7 is best value to reach over 0.93
+add epoch from 20 to 50 to have more training
+
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+LeNet is well know CNN to classify the 10 digit. Use the convenet is direct thought. However, it does not give best result without modification
 
 If a well known architecture was chosen:
-* What architecture was chosen?
+* What architecture was chosen? Googlenet
 * Why did you believe it would be relevant to the traffic sign application?
+from the site: http://cs231n.github.io/convolutional-networks/ it extends the AlexNet with deeper and bigger CNN layer. It also reduced the parameter computation dramatically by introduced the **_Inception Module_** idea. it consumes much less parameter i.e. 4M, compared to AlexNet with 60M
+
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
@@ -134,47 +143,85 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![Do-Not-Enter](./web_images/public/Do-Not-Enter.jpg) { width=50% }
-![bicyle right of road](./web_images/public/bicycle_crossing_right_of_road.jpg) { width=50% }
+![Do-Not-Enter](./web_images/public/Do-Not-Enter.jpg)
+![bicyle right of road](./web_images/public/bicycle_crossing_right_of_road.jpg)
 ![go-straight-or-right](./web_images/public/go-straight-or-right.jpg) 
 ![pedestrain](./web_images/public/pedestrain.jpg) 
 ![speed_limit_100](./web_images/public/speed_limit_100.jpg)
 
 
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Do-Not-Enter      		|   17,No entry									| 
+| bicycle cross right of road     			| 11,Right-of-way at the next intersection									|
+| go straight or right					| 	14,Stop										|
+| pedestrain	      		| 11,Right-of-way at the next intersection					 				|
+| speed limit 100		| 11,Right-of-way at the next intersection     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The top five soft max probabilities were
+
+
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.00000000e+00        			| 17, No entry   									| 
+| 7.89568324e-12   				| 14, stop										|
+| 2.66821244e-12					| 39, keep left										|
+| 2.12974451e-12	      			|0,Speed limit (20km/h)				 				|
+| 5.05295512e-13			    | 6,Go straight or right     							|
 
 
 For the second image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 9.05359149e-01        			| 11,Right-of-way at the next intersection 									| 
+| 8.96053016e-02   				| 27,Pedestrians									|
+| 5.02633490e-03					| 18,General caution									|
+| 7.05399316e-06	      			|30,Beware of ice/snow				 				|
+| 1.32864966e-06			    | 40,Roundabout mandatory    							|
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+
+for the third image
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 2.71772653e-01        			|  14, stop	 									| 
+| 2.48090386e-01   				| 	4,Speed limit (70km/h)								|
+| 2.07091823e-01					| 1,Speed limit (30km/h)						|
+| 1.69023097e-01	      			|2,Speed limit (50km/h)			 				|
+| 3.13728116e-02			    | 38,Keep right    							|
+
+
+       
+for the fourth image
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 4.55230981e-01        			| 11,Right-of-way at the next intersection  									| 
+| 1.30545080e-01   				| 36,Go straight or right								|
+| 1.30329639e-01					| 18,General caution								|
+| 6.88620359e-02	      			|		40,Roundabout mandatory		 				|
+| 3.61995883e-02			    | 32,End of all speed and passing limits     							|
+
+
+for the fifth image
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 9.99936581e-01        			| 11,Right-of-way at the next intersection   									| 
+| 3.26904410e-05   				| 				18,General caution						|
+| 1.62894885e-05					| 30,Beware of ice/snow										|
+| 1.05564541e-05	      			|27,Pedestrians			 				|
+| 1.88294962e-06			    | 28,Children crossing    							|
+
 
 
