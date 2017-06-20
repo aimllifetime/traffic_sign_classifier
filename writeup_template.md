@@ -30,7 +30,7 @@ You're reading it! and here is a link to my [project code](https://github.com/ai
 Use python array "len" fuction on X_train and other variables, we have following summary information of data set.
 
 * The size of training set is = len(X_train) = 34799
-* The size of the validation set is = len(X_valid) = 
+* The size of the validation set is = len(X_valid) = 4410
 * The size of test set is = len(X_test) = 4410
 * The shape of a traffic sign image is = X_train[0].shape = (32, 32, 3)
 * The number of unique classes/labels in the data set is = 43   <= this is read from signnames.csv on how many of entries of records.
@@ -38,8 +38,6 @@ Use python array "len" fuction on X_train and other variables, we have following
 #### 2. Include an exploratory visualization of the dataset.
 
 randomly select one image from X_train and display it on screen.
-
-![alt text][image1]
 
 ### Design and Test a Model Architecture
 
@@ -60,11 +58,6 @@ Converting the images to grayscale helps in couple of ways:
 Normalizing the image data has benefits as follows:
 * have data of mean equal to zero and equal variance.
 * Search algorithm spends much less time to find optimal solution, such as in gradient decent search process.
-
-
-
-![alt text][image3]
- 
 
 
 #### 2. Following table described the modified LeNet CNN for traffic sign classification:
@@ -93,8 +86,6 @@ My final model consisted of the following layers:
 | dropout  | probability = 0.7 |
 
  
-
-
 #### 3. The training model uses following techniques and parameter:
 
 * use LeNet as the CNN to do the calssifier. 
@@ -105,8 +96,6 @@ My final model consisted of the following layers:
 * Epoch is set to 20 initially but increased to 50. More epoch increase the accuracy of model
 * weight variable is set to mean = 0 and variance = 0.1
 * dropout = 0.7
-
-
 
 #### 4. following describe approaches taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
