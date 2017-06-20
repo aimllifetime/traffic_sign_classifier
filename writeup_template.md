@@ -134,10 +134,13 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text](./web_images/public/Do-Not-Enter.jpg =50x50) ![alt text](./web_images/public/bicycle_crossing_right_of_road.jpg = 50x50) ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![Do-Not-Enter](./web_images/public/Do-Not-Enter.jpg) { width=50% }
+![bicyle right of road](./web_images/public/bicycle_crossing_right_of_road.jpg) { width=50% }
+![go-straight-or-right](./web_images/public/go-straight-or-right.jpg) 
+![pedestrain](./web_images/public/pedestrain.jpg) 
+![speed_limit_100](./web_images/public/speed_limit_100.jpg)
 
-The first image might be difficult to classify because ...
+
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
