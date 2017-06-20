@@ -100,7 +100,7 @@ My final model consisted of the following layers:
 * use LeNet as the CNN to do the calssifier. 
 * use cross entrophy to calcuate the loss.
 * use the Adam optimizer to do the gradient decent.
-* Batch size was set to 128 which to be find optimal one from previous quiz learning. 
+* Batch size was set to 128 which to be found optimal one from previous quiz learning. 
 * learning rate is kept at 0.001 which is also learned from previous quiz work. 
 * Epoch is set to 20 initially but increased to 50. More epoch increase the accuracy of model
 * weight variable is set to mean = 0 and variance = 0.1
@@ -134,7 +134,7 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text](./web_images/public/Do-Not-Enter.jpg) ![alt text][image5] ![alt text][image6] 
+![alt text](./web_images/public/Do-Not-Enter.jpg =50x50) ![alt text](./web_images/public/bicycle_crossing_right_of_road.jpg = 50x50) ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
 The first image might be difficult to classify because ...
