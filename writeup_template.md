@@ -135,7 +135,7 @@ If a well known architecture was chosen:
 from the site: http://cs231n.github.io/convolutional-networks/ it extends the AlexNet with deeper and bigger CNN layer. It also reduced the parameter computation dramatically by introduced the **_Inception Module_** idea. it consumes much less parameter i.e. 4M, compared to AlexNet with 60M
 
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+ the accuracy on training, validationa nd test set are very close to each other.
 
 ### Test a Model on New Images
 
@@ -151,7 +151,7 @@ Here are five German traffic signs that I found on the web:
 
 
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 
 Here are the results of the prediction:
 
@@ -166,9 +166,9 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
 For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The top five soft max probabilities were
 
@@ -182,8 +182,8 @@ For the first image, the model is relatively sure that this is a no entry sign (
 | 2.12974451e-12	      			|0,Speed limit (20km/h)				 				|
 | 5.05295512e-13			    | 6,Go straight or right     							|
 
-
 For the second image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 9.05359149e-01        			| 11,Right-of-way at the next intersection 									| 
@@ -194,6 +194,7 @@ For the second image ...
 
 
 for the third image
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 2.71772653e-01        			|  14, stop	 									| 
@@ -205,6 +206,7 @@ for the third image
 
        
 for the fourth image
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 4.55230981e-01        			| 11,Right-of-way at the next intersection  									| 
@@ -215,6 +217,7 @@ for the fourth image
 
 
 for the fifth image
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 9.99936581e-01        			| 11,Right-of-way at the next intersection   									| 
