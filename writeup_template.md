@@ -54,34 +54,44 @@ _normalize_grayscale_ returns image using: _a + ( ( (image_data - grayscale_min)
 It is necessary to reshape of normalized image to(32, 32, 1) from (32, 32). Later LeNet assumes input channel parameter.
 
 Converting the images to grayscale helps in couple of ways:
-  * 
-  *
-  *
-Normalizing the image data has benefits as follows
-  *
-  * 
-  *
+* color does not really make difference in term of classification
+* reduce color to gray can also save 2/3 of computation
+
+Normalizing the image data has benefits as follows:
+* have data of mean equal to zero and equal variance.
+* Search algorithm spends much less time to find optimal solution, such as in gradient decent search process.
+
 
 
 ![alt text][image3]
  
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### 2. Following table described the modified LeNet CNN for traffic sign classification:
 
 My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 Gray image   							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| dropout  | probility = 0.7 |
+| Max pooling	      	| 2x2 kernel, 2x2 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    | 1x1 stride, valid padding outputs 10x10x16      									|
+| RELU					|												|
+| dropout  | probility = 0.7 |
+| Max pooling	      	| 2x2 kernel, 2x2 stride,  outputs 5x5x16			|
+| flatten | output 400 |
+| Fully Connected | input 400, output 120 | 
+| RELU					|												|
+| dropout  | probility = 0.7 |
+| Fully Connected | input 120, output 84 | 
+| RELU					|												|
+| dropout  | probility = 0.7 |
+| Fully Connected | input 84, output 43 | 
+| dropout  | probility = 0.7 |
+
  
 
 
