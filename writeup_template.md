@@ -76,35 +76,44 @@ My final model consisted of the following layers:
 | Input         		| 32x32x1 Gray image   							| 
 | Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
-| dropout  | probility = 0.7 |
+| dropout  | probability = 0.7 |
 | Max pooling	      	| 2x2 kernel, 2x2 stride,  outputs 14x14x6 				|
 | Convolution 5x5	    | 1x1 stride, valid padding outputs 10x10x16      									|
 | RELU					|												|
-| dropout  | probility = 0.7 |
+| dropout  | probability = 0.7 |
 | Max pooling	      	| 2x2 kernel, 2x2 stride,  outputs 5x5x16			|
 | flatten | output 400 |
 | Fully Connected | input 400, output 120 | 
 | RELU					|												|
-| dropout  | probility = 0.7 |
+| dropout  | probability = 0.7 |
 | Fully Connected | input 120, output 84 | 
 | RELU					|												|
-| dropout  | probility = 0.7 |
+| dropout  | probability = 0.7 |
 | Fully Connected | input 84, output 43 | 
-| dropout  | probility = 0.7 |
+| dropout  | probability = 0.7 |
 
  
 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. The training model uses following techniques and parameter:
 
-To train the model, I used an ....
+* use LeNet as the CNN to do the calssifier. 
+* use cross entrophy to calcuate the loss.
+* use the Adam optimizer to do the gradient decent.
+* Batch size was set to 128 which to be find optimal one from previous quiz learning. 
+* learning rate is kept at 0.001 which is also learned from previous quiz work. 
+* Epoch is set to 20 initially but increased to 50. More epoch increase the accuracy of model
+* weight variable is set to mean = 0 and variance = 0.1
+* dropout = 0.7
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+
+
+#### 4. following describe approaches taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.94
+* validation set accuracy of 0.94
+* test set accuracy of 
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -119,13 +128,13 @@ If a well known architecture was chosen:
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
+![alt text](./web_images/public/Do-Not-Enter.jpg) ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
 The first image might be difficult to classify because ...
