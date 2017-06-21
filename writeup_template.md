@@ -193,7 +193,7 @@ First Image, predict correctly in two models as "No Entry" of probability of 1.0
 
 | Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
 |:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
-| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | 17, No entry  |
+| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | **17, No entry**  |
 | 7.89568324e-12   				| 14, stop										| 3.29774152e-14 | 33,Turn right ahead |
 | 2.66821244e-12					| 39, keep left										| 1.44279391e-14 | 0,Speed limit (20km/h) |
 | 2.12974451e-12	      			|0,Speed limit (20km/h)				 				| 2.23995894e-15 |  14, stop	 |
