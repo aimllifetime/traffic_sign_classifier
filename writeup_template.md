@@ -200,31 +200,16 @@ First Image, predict correctly in two models as "No Entry" of probability of 1.0
 | 5.05295512e-13			    | 6,Go straight or right     							| 1.85667250e-15 | 29,Bicycles crossing |
 
 
-For the second image ... 
+For the second image it correctly predicted to "Pedestrains" when model is of accuracy 0.954
 
 | Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
 |:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
-| 9.05359149e-01        			| 11,Right-of-way at the next intersection | 6.82728946e-01 | 27,Pedestrians	|
+| 9.05359149e-01        			| 11,Right-of-way at the next intersection | 6.82728946e-01 | **27,Pedestrians**	|
 | 8.96053016e-02   				| 27,Pedestrians									|	2.01839179e-01 | 18,General caution |
 | 5.02633490e-03					| 18,General caution									| 5.15731350e-02 | 11,Right-of-way at the next intersection |
 | 7.05399316e-06	      			|30,Beware of ice/snow				 				|1.49276834e-02 | 24,Road narrows on the right |
 | 1.32864966e-06			    | 40,Roundabout mandatory    							|1.45142544e-02| 20,Dangerous curve to the right |
 
-
-TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
-          2.23995894e-15,   1.85667250e-15],
-       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
-          1.49276834e-02,   1.45142544e-02],
-       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
-          2.02781558e-02,   1.68899670e-02],
-       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
-          2.98202727e-02,   2.05953307e-02],
-       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
-          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
-       [27, 18, 11, 24, 20],
-       [ 8,  9,  7,  5,  3],
-       [36, 18, 26, 28, 12],
-       [11, 30, 28, 33, 27]], dtype=int32))
 
 for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are four softmax close to speed limit detection. however, the highest priority is of 120km/h rather than the right one 100km/h.
 
@@ -236,28 +221,26 @@ for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are f
 | 1.69023097e-01	      			|2,Speed limit (50km/h)			 				| 2.02781558e-02 | 5,Speed limit (80km/h) |
 | 3.13728116e-02			    | 38,Keep right    							| 1.68899670e-02 | 3,Speed limit (60km/h)|
 
+for the fourth image "go straight or right", the model accuracy helps to predict correctly. it was second position when in model of 0.93 and now moves to top one softmax position.
 
-       
-for the fourth image
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 4.55230981e-01        			| 11,Right-of-way at the next intersection  									| 
-| 1.30545080e-01   				| 36,Go straight or right								|
-| 1.30329639e-01					| 18,General caution								|
-| 6.88620359e-02	      			|		40,Roundabout mandatory		 				|
-| 3.61995883e-02			    | 32,End of all speed and passing limits     							|
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 4.55230981e-01  | 11,Right-of-way at the next intersection | 6.74720228e-01 | **36,Go straight or right** |
+| 1.30545080e-01   				| 36,Go straight or right								| 4.68871072e-02 | 18,General caution	|
+| 1.30329639e-01					| 18,General caution								| 3.09265070e-02 | 26,Traffic signals |
+| 6.88620359e-02	      			|		40,Roundabout mandatory		 				|2.98202727e-02|28,Children crossing |
+| 3.61995883e-02			    | 32,End of all speed and passing limits |2.05953307e-02| 12,Priority road |
 
 
-for the fifth image
+for the fifth image "bicycle_crossing_right_of_road.jpg". To be honest, I do not know exactly the meaning of sign. From the web http://bicyclegermany.com/german_bicycle_laws.html, it seems "you have the right-of-way but only at this intersection". it does not seems to be class 11, i.e. "Right-of-way at the next intersection". So the best label is put under class "29,Bicycles crossing". it could be mislabelled.
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 9.99936581e-01        			| 11,Right-of-way at the next intersection   									| 
-| 3.26904410e-05   				| 				18,General caution						|
-| 1.62894885e-05					| 30,Beware of ice/snow										|
-| 1.05564541e-05	      			|27,Pedestrians			 				|
-| 1.88294962e-06			    | 28,Children crossing    							|
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 9.99936581e-01 | 11,Right-of-way at the next intersection| 9.83665287e-01 | 11,Right-of-way at the next intersection|
+| 3.26904410e-05 | 18,General caution						|6.32520439e-03 | 30,Beware of ice/snow|
+| 1.62894885e-05	| 30,Beware of ice/snow										|5.84812835e-03 | 28,Children crossing |
+| 1.05564541e-05	| 27,Pedestrians			 				|1.49415387e-03 |33,Turn right ahead|
+| 1.88294962e-06	| 28,Children crossing    							| 7.78892369e-04| 27,Pedestrians	|
 
 
 
