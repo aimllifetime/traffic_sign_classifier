@@ -181,23 +181,12 @@ The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could b
 The model accuracy of 0.954 greatly help to predict correclty the **pedestrain** and **go straight or right** sign.
 The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
 
+Below is the softmax for model is of 0.954 accuracy.
+![](./result_images/top_5.png)
+
 Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
 
 
-TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
-          2.23995894e-15,   1.85667250e-15],
-       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
-          1.49276834e-02,   1.45142544e-02],
-       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
-          2.02781558e-02,   1.68899670e-02],
-       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
-          2.98202727e-02,   2.05953307e-02],
-       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
-          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
-       [27, 18, 11, 24, 20],
-       [ 8,  9,  7,  5,  3],
-       [36, 18, 26, 28, 12],
-       [11, 30, 28, 33, 27]], dtype=int32))
 
 First Image, predict correctly in two models as "No Entry" of probability of 1.0:
 
