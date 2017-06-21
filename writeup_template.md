@@ -39,13 +39,14 @@ Use python array "len" fuction on X_train and other variables, we have following
 
 Used "Pandas" library to plot the distribution of each class' count. 
 
-![istribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
+![Distribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
 
 Note the class 27 has very small training example, i.e. only have 210 training example
 
 About half of the classes has less than 500 training example. it might be good idea to do data augmentation to create more training images.
 
 Then, randomly pick one image index 33801 out of training example and plot it to see visually.
+
 ![33801](./result_images/33801.png)
 
 ### Design and Test a Model Architecture
@@ -108,10 +109,10 @@ My final model consisted of the following layers:
 
 #### 4. following describe approaches taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
-My final model results were:
-* training set accuracy of 0.939
-* validation set accuracy of 0.939
-* test set accuracy of 9.38
+after using early stop in EPOCH iteration, My final model results were :
+* training set accuracy of 0.954
+* validation set accuracy of 0.954
+* test set accuracy of 0.9535
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -153,16 +154,18 @@ Here are five German traffic signs that I found on the web:
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Do-Not-Enter      		|   17,No entry									| 
-| bicycle cross right of road     			| 11,Right-of-way at the next intersection									|
-| go straight or right					| 	14,Stop										|
-| pedestrain	      		| 11,Right-of-way at the next intersection					 				|
-| speed limit 100		| 11,Right-of-way at the next intersection     							|
+| Image			        |     Prediction	  (training accuracy 0.93)      					|     Prediction	  (training accuracy 0.954)         |
+|:---------------------:|:---------------------------------------------:|:------------------------------------------- :|
+| Do-Not-Enter      		|   17,No entry									| 17,No entry	|
+| pedestrain	      		| 11,Right-of-way at the next intersection					 				|   27,Pedestrians |
+| speed limit 100		| 11,Right-of-way at the next intersection     							| 8,Speed limit (120km/h) |
+| go straight or right					| 	14,Stop										| 36,Go straight or right |
+| bicycle cross right of road | 11,Right-of-way at the next intersection |11,Right-of-way at the next intersection	|
 
 
-The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
+When the model accuracy is of 0.93, it was able to correctly guess only 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
+
+when the model accuracy is of 0.954, it correctly classified 3 out of 5 web image and increased accuracy to 60%
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
