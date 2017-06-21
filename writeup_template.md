@@ -174,9 +174,15 @@ when the model accuracy is of 0.954, it correctly classified 3 out of 5 web imag
 
 The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. Following are the top five soft max probabilities when model accuracy is of 0.93 and 0.954 with web image predication of accuracy of 20% and 60% respectively. 
 
+The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. The speed limit of 100 is not predicted correctly in both cases. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of 100 only, it still does not work. It does predict of 120km sign though.
 
+The model accuracy of 0.954 greatly help to predict correclty the **pedestrain** and **go straight or right** sign.
+The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
+
+Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
+First Image, predict correctly in two models:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
