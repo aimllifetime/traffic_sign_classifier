@@ -41,12 +41,13 @@ Used "Pandas" library to plot the distribution of each class' count.
 
 <a href="url"><img src="https://github.com/aimllifetime/traffic_sign_classifier/blob/master/result_images/distributiion_of_each_class.png" align="left" height="500" width="2000" ></a>
 
+Large image is at:
+https://raw.githubusercontent.com/aimllifetime/traffic_sign_classifier/master/result_images/distributiion_of_each_class.png
 
-![Distribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
 
 Note the class 27 has very small training examples, i.e. only has 210 training examples
 
-About half of the classes has less than 500 training example. it might be good idea to do data augmentation to create more training images.
+About half of the classes have less than 500 training example in each class. it might be good idea to do data augmentation to create more training images.
 
 Then, randomly pick one image index 33801 out of training example and plot it to see visually.
 
@@ -174,85 +175,78 @@ when the model accuracy is of 0.954, it correctly classified 3 out of 5 web imag
 
 The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. Following are the top five soft max probabilities when model accuracy is of 0.93 and 0.954 with web image predication of accuracy of 20% and 60% respectively. 
+When model accuracy increases from 0.93 to 0.954, the predication of accuracy for web image increases to 60% from 20%. For the first image "No Entry", the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The model accuracy of 0.954 greatly helps to predict correclty the **pedestrain** and **go straight or right** sign.
 
-The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. The speed limit of 100 is not predicted correctly in both cases. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of 100 only, it still does not work. It does predict of 120km sign though.
+The "early stopping" training in EPOCH iteration is used when validation accuracy is reached above 0.95.
 
-The model accuracy of 0.954 greatly help to predict correclty the **pedestrain** and **go straight or right** sign.
-The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
+The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. It could be mislabelled as analyzed below for 5th image. 
 
-Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
+The speed limit of 100 is not predicted correctly in both models. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of "100" sign only, it still does not work. It does predict of 120km sign though.
 
 
-TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
-          2.23995894e-15,   1.85667250e-15],
-       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
-          1.49276834e-02,   1.45142544e-02],
-       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
-          2.02781558e-02,   1.68899670e-02],
-       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
-          2.98202727e-02,   2.05953307e-02],
-       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
-          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
-       [27, 18, 11, 24, 20],
-       [ 8,  9,  7,  5,  3],
-       [36, 18, 26, 28, 12],
-       [11, 30, 28, 33, 27]], dtype=int32))
+
+Below is the softmax for model is of 0.954 accuracy.
+![](./result_images/top_5.png)
+
+Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy. Correct prediction is highlight in bold.
+
 
 First Image, predict correctly in two models as "No Entry" of probability of 1.0:
 
 | Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
 |:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
-| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | 17, No entry  |
+| 1.00000000e+00        			| **17, No entry**  									| 1.00000000e+00 | **17, No entry**  |
 | 7.89568324e-12   				| 14, stop										| 3.29774152e-14 | 33,Turn right ahead |
 | 2.66821244e-12					| 39, keep left										| 1.44279391e-14 | 0,Speed limit (20km/h) |
 | 2.12974451e-12	      			|0,Speed limit (20km/h)				 				| 2.23995894e-15 |  14, stop	 |
 | 5.05295512e-13			    | 6,Go straight or right     							| 1.85667250e-15 | 29,Bicycles crossing |
 
 
-For the second image ... 
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 9.05359149e-01        			| 11,Right-of-way at the next intersection 									| 
-| 8.96053016e-02   				| 27,Pedestrians									|
-| 5.02633490e-03					| 18,General caution									|
-| 7.05399316e-06	      			|30,Beware of ice/snow				 				|
-| 1.32864966e-06			    | 40,Roundabout mandatory    							|
+For the second image it correctly predicted to "Pedestrains" when model is of accuracy 0.954
 
-
-for the third image
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 2.71772653e-01        			|  14, stop	 									| 
-| 2.48090386e-01   				| 	4,Speed limit (70km/h)								|
-| 2.07091823e-01					| 1,Speed limit (30km/h)						|
-| 1.69023097e-01	      			|2,Speed limit (50km/h)			 				|
-| 3.13728116e-02			    | 38,Keep right    							|
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
+| 9.05359149e-01        			| 11,Right-of-way at the next intersection | 6.82728946e-01 | **27,Pedestrians**	|
+| 8.96053016e-02   				| 27,Pedestrians									|	2.01839179e-01 | 18,General caution |
+| 5.02633490e-03					| 18,General caution									| 5.15731350e-02 | 11,Right-of-way at the next intersection |
+| 7.05399316e-06	      			|30,Beware of ice/snow				 				|1.49276834e-02 | 24,Road narrows on the right |
+| 1.32864966e-06			    | 40,Roundabout mandatory    							|1.45142544e-02| 20,Dangerous curve to the right |
 
 
-       
-for the fourth image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 4.55230981e-01        			| 11,Right-of-way at the next intersection  									| 
-| 1.30545080e-01   				| 36,Go straight or right								|
-| 1.30329639e-01					| 18,General caution								|
-| 6.88620359e-02	      			|		40,Roundabout mandatory		 				|
-| 3.61995883e-02			    | 32,End of all speed and passing limits     							|
+for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are four softmax close to speed limit detection. however, the highest priority is of 120km/h rather than the right one 100km/h.
+
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 2.71772653e-01        			|  14, stop	 									| 8.00025165e-01 | 8,Speed limit (120km/h) |
+| 2.48090386e-01   				| 	4,Speed limit (70km/h)								| 4.98792417e-02 | 9,No passing|
+| 2.07091823e-01					| 1,Speed limit (30km/h)						| 2.78585199e-02 | 7,Speed limit (100km/h) 
+| 1.69023097e-01	      			|2,Speed limit (50km/h)			 				| 2.02781558e-02 | 5,Speed limit (80km/h) |
+| 3.13728116e-02			    | 38,Keep right    							| 1.68899670e-02 | 3,Speed limit (60km/h)|
 
 
-for the fifth image
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 9.99936581e-01        			| 11,Right-of-way at the next intersection   									| 
-| 3.26904410e-05   				| 				18,General caution						|
-| 1.62894885e-05					| 30,Beware of ice/snow										|
-| 1.05564541e-05	      			|27,Pedestrians			 				|
-| 1.88294962e-06			    | 28,Children crossing    							|
+for the fourth image "go straight or right", the model accuracy helps to predict correctly. it was second position when in model of 0.93 and now moves to top one softmax position.
+
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 4.55230981e-01  | 11,Right-of-way at the next intersection | 6.74720228e-01 | **36,Go straight or right** |
+| 1.30545080e-01   				| 36,Go straight or right								| 4.68871072e-02 | 18,General caution	|
+| 1.30329639e-01					| 18,General caution								| 3.09265070e-02 | 26,Traffic signals |
+| 6.88620359e-02	      			|		40,Roundabout mandatory		 				|2.98202727e-02|28,Children crossing |
+| 3.61995883e-02			    | 32,End of all speed and passing limits |2.05953307e-02| 12,Priority road |
+
+
+for the fifth image "bicycle_crossing_right_of_road.jpg". To be honest, I do not know exactly the meaning of sign. From the web http://bicyclegermany.com/german_bicycle_laws.html, it seems "you have the right-of-way but only at this intersection". it does not seems to be class 11, i.e. "Right-of-way at the next intersection". So the best label is put under class "29,Bicycles crossing". it could be mislabelled.
+
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 9.99936581e-01 | 11,Right-of-way at the next intersection| 9.83665287e-01 | 11,Right-of-way at the next intersection|
+| 3.26904410e-05 | 18,General caution						|6.32520439e-03 | 30,Beware of ice/snow|
+| 1.62894885e-05	| 30,Beware of ice/snow										|5.84812835e-03 | 28,Children crossing |
+| 1.05564541e-05	| 27,Pedestrians			 				|1.49415387e-03 |33,Turn right ahead|
+| 1.88294962e-06	| 28,Children crossing    							| 7.78892369e-04| 27,Pedestrians	|
 
 
 
