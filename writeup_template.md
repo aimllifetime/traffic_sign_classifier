@@ -37,7 +37,16 @@ Use python array "len" fuction on X_train and other variables, we have following
 
 #### 2. Include an exploratory visualization of the dataset.
 
-randomly select one image from X_train and display it on screen.
+Used "Pandas" library to plot the distribution of each class' count. 
+
+![istribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
+
+Note the class 27 has very small training example, i.e. only have 210 training example
+
+About half of the classes has less than 500 training example. it might be good idea to do data augmentation to create more training images.
+
+Then, randomly pick one image index 33801 out of training example and plot it to see visually.
+![33801](./result_images/33801.png)
 
 ### Design and Test a Model Architecture
 
