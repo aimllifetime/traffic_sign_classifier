@@ -157,11 +157,11 @@ Here are five German traffic signs that I found on the web:
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	  (training accuracy 0.93)      					|     Prediction	  (training accuracy 0.954)         |
+| Image			              |     Prediction	  (training accuracy 0.93)    	|     Prediction	  (training accuracy 0.954)   |
 |:---------------------:|:---------------------------------------------:|:------------------------------------------- :|
-| Do-Not-Enter      		|   17,No entry									| 17,No entry	|
-| pedestrain	      		| 11,Right-of-way at the next intersection					 				|   27,Pedestrians |
-| speed limit 100		| 11,Right-of-way at the next intersection     							| 8,Speed limit (120km/h) |
+| Do-Not-Enter      		  |       17,No entry							                    		| 17,No entry	|
+| pedestrain	      		   | 11,Right-of-way at the next intersection					 				|   27,Pedestrians |
+| speed limit 100		     | 11,Right-of-way at the next intersection     							| 8,Speed limit (120km/h) |
 | go straight or right					| 	14,Stop										| 36,Go straight or right |
 | bicycle cross right of road | 11,Right-of-way at the next intersection |11,Right-of-way at the next intersection	|
 
