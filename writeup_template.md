@@ -188,6 +188,7 @@ Following gives out the softmax of prediction when model is of 0.93 and 0.954 ac
 
 
 
+
 First Image, predict correctly in two models as "No Entry" of probability of 1.0:
 
 | Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
@@ -201,24 +202,39 @@ First Image, predict correctly in two models as "No Entry" of probability of 1.0
 
 For the second image ... 
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 9.05359149e-01        			| 11,Right-of-way at the next intersection 									| 
-| 8.96053016e-02   				| 27,Pedestrians									|
-| 5.02633490e-03					| 18,General caution									|
-| 7.05399316e-06	      			|30,Beware of ice/snow				 				|
-| 1.32864966e-06			    | 40,Roundabout mandatory    							|
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
+| 9.05359149e-01        			| 11,Right-of-way at the next intersection | 6.82728946e-01 | 27,Pedestrians	|
+| 8.96053016e-02   				| 27,Pedestrians									|	2.01839179e-01 | 18,General caution |
+| 5.02633490e-03					| 18,General caution									| 5.15731350e-02 | 11,Right-of-way at the next intersection |
+| 7.05399316e-06	      			|30,Beware of ice/snow				 				|1.49276834e-02 | 24,Road narrows on the right |
+| 1.32864966e-06			    | 40,Roundabout mandatory    							|1.45142544e-02| 20,Dangerous curve to the right |
 
 
-for the third image
+TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
+          2.23995894e-15,   1.85667250e-15],
+       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
+          1.49276834e-02,   1.45142544e-02],
+       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
+          2.02781558e-02,   1.68899670e-02],
+       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
+          2.98202727e-02,   2.05953307e-02],
+       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
+          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
+       [27, 18, 11, 24, 20],
+       [ 8,  9,  7,  5,  3],
+       [36, 18, 26, 28, 12],
+       [11, 30, 28, 33, 27]], dtype=int32))
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 2.71772653e-01        			|  14, stop	 									| 
-| 2.48090386e-01   				| 	4,Speed limit (70km/h)								|
-| 2.07091823e-01					| 1,Speed limit (30km/h)						|
-| 1.69023097e-01	      			|2,Speed limit (50km/h)			 				|
-| 3.13728116e-02			    | 38,Keep right    							|
+for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are four softmax close to speed limit detection. however, the highest priority is of 120km/h rather than the right one 100km/h.
+
+| Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------| 
+| 2.71772653e-01        			|  14, stop	 									| 8.00025165e-01 | 8,Speed limit (120km/h) |
+| 2.48090386e-01   				| 	4,Speed limit (70km/h)								| 4.98792417e-02 | 9,No passing|
+| 2.07091823e-01					| 1,Speed limit (30km/h)						| 2.78585199e-02 | 7,Speed limit (100km/h) 
+| 1.69023097e-01	      			|2,Speed limit (50km/h)			 				| 2.02781558e-02 | 5,Speed limit (80km/h) |
+| 3.13728116e-02			    | 38,Keep right    							| 1.68899670e-02 | 3,Speed limit (60km/h)|
 
 
        
