@@ -182,15 +182,33 @@ The model accuracy of 0.954 greatly help to predict correclty the **pedestrain**
 The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
 
 Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
-First Image, predict correctly in two models:
-|       Model accuracy of 0.93  |
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 1.00000000e+00        			| 17, No entry   									| 
-| 7.89568324e-12   				| 14, stop										|
-| 2.66821244e-12					| 39, keep left										|
-| 2.12974451e-12	      			|0,Speed limit (20km/h)				 				|
-| 5.05295512e-13			    | 6,Go straight or right     							|
+
+
+TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
+          2.23995894e-15,   1.85667250e-15],
+       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
+          1.49276834e-02,   1.45142544e-02],
+       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
+          2.02781558e-02,   1.68899670e-02],
+       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
+          2.98202727e-02,   2.05953307e-02],
+       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
+          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
+       [27, 18, 11, 24, 20],
+       [ 8,  9,  7,  5,  3],
+       [36, 18, 26, 28, 12],
+       [11, 30, 28, 33, 27]], dtype=int32))
+
+First Image, predict correctly in two models as "No Entry" of probability of 1.0:
+
+| Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
+| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | 17, No entry  |
+| 7.89568324e-12   				| 14, stop										| 3.29774152e-14 | 33,Turn right ahead |
+| 2.66821244e-12					| 39, keep left										| 1.44279391e-14 | 0,Speed limit (20km/h) |
+| 2.12974451e-12	      			|0,Speed limit (20km/h)				 				| 2.23995894e-15 |  14, stop	 |
+| 5.05295512e-13			    | 6,Go straight or right     							| 1.85667250e-15 | 29,Bicycles crossing |
+
 
 For the second image ... 
 
