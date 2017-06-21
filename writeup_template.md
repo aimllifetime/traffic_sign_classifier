@@ -37,7 +37,20 @@ Use python array "len" fuction on X_train and other variables, we have following
 
 #### 2. Include an exploratory visualization of the dataset.
 
-randomly select one image from X_train and display it on screen.
+Used "Pandas" library to plot the distribution of each class' count. 
+
+<a href="url"><img src="https://github.com/aimllifetime/traffic_sign_classifier/blob/master/result_images/distributiion_of_each_class.png" align="left" height="500" width="2000" ></a>
+
+
+![Distribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
+
+Note the class 27 has very small training examples, i.e. only has 210 training examples
+
+About half of the classes has less than 500 training example. it might be good idea to do data augmentation to create more training images.
+
+Then, randomly pick one image index 33801 out of training example and plot it to see visually.
+
+![33801](./result_images/33801.png)
 
 ### Design and Test a Model Architecture
 
@@ -99,10 +112,10 @@ My final model consisted of the following layers:
 
 #### 4. following describe approaches taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
-My final model results were:
-* training set accuracy of 0.939
-* validation set accuracy of 0.939
-* test set accuracy of 9.38
+after using early stop in EPOCH iteration, My final model results were :
+* training set accuracy of 0.954
+* validation set accuracy of 0.954
+* test set accuracy of 0.9535
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -144,32 +157,58 @@ Here are five German traffic signs that I found on the web:
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Do-Not-Enter      		|   17,No entry									| 
-| bicycle cross right of road     			| 11,Right-of-way at the next intersection									|
-| go straight or right					| 	14,Stop										|
-| pedestrain	      		| 11,Right-of-way at the next intersection					 				|
-| speed limit 100		| 11,Right-of-way at the next intersection     							|
+| Image			              |     Prediction	  (training accuracy 0.93)    	|     Prediction	  (training accuracy 0.954)   |
+|:---------------------:|:---------------------------------------------:|:-------------------------------------------:|
+| Do-Not-Enter      		  |       17,No entry							                    		| 17,No entry	|
+| pedestrain	      		   | 11,Right-of-way at the next intersection					 				|   27,Pedestrians |
+| speed limit 100		     | 11,Right-of-way at the next intersection     							| 8,Speed limit (120km/h) |
+| go straight or right					| 	14,Stop										| 36,Go straight or right |
+| bicycle cross right of road | 11,Right-of-way at the next intersection |11,Right-of-way at the next intersection	|
 
 
-The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
+When the model accuracy is of 0.93, it was able to correctly guess only 1 of the 5 traffic signs, which gives an accuracy of 20%. This seems low compared to the test accuracy.
+
+when the model accuracy is of 0.954, it correctly classified 3 out of 5 web image and increased accuracy to 60%
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. Following are the top five soft max probabilities when model accuracy is of 0.93 and 0.954 with web image predication of accuracy of 20% and 60% respectively. 
+
+The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. The speed limit of 100 is not predicted correctly in both cases. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of 100 only, it still does not work. It does predict of 120km sign though.
+
+The model accuracy of 0.954 greatly help to predict correclty the **pedestrain** and **go straight or right** sign.
+The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
+
+Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
 
 
+TopKV2(values=array([[  1.00000000e+00,   3.29774152e-14,   1.44279391e-14,
+          2.23995894e-15,   1.85667250e-15],
+       [  6.82728946e-01,   2.01839179e-01,   5.15731350e-02,
+          1.49276834e-02,   1.45142544e-02],
+       [  8.00025165e-01,   4.98792417e-02,   2.78585199e-02,
+          2.02781558e-02,   1.68899670e-02],
+       [  6.74720228e-01,   4.68871072e-02,   3.09265070e-02,
+          2.98202727e-02,   2.05953307e-02],
+       [  9.83665287e-01,   6.32520439e-03,   5.84812835e-03,
+          1.49415387e-03,   7.78892369e-04]], dtype=float32), indices=array([[17, 33,  0, 14, 29],
+       [27, 18, 11, 24, 20],
+       [ 8,  9,  7,  5,  3],
+       [36, 18, 26, 28, 12],
+       [11, 30, 28, 33, 27]], dtype=int32))
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 1.00000000e+00        			| 17, No entry   									| 
-| 7.89568324e-12   				| 14, stop										|
-| 2.66821244e-12					| 39, keep left										|
-| 2.12974451e-12	      			|0,Speed limit (20km/h)				 				|
-| 5.05295512e-13			    | 6,Go straight or right     							|
+First Image, predict correctly in two models as "No Entry" of probability of 1.0:
+
+| Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
+|:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
+| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | 17, No entry  |
+| 7.89568324e-12   				| 14, stop										| 3.29774152e-14 | 33,Turn right ahead |
+| 2.66821244e-12					| 39, keep left										| 1.44279391e-14 | 0,Speed limit (20km/h) |
+| 2.12974451e-12	      			|0,Speed limit (20km/h)				 				| 2.23995894e-15 |  14, stop	 |
+| 5.05295512e-13			    | 6,Go straight or right     							| 1.85667250e-15 | 29,Bicycles crossing |
+
 
 For the second image ... 
 
