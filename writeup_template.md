@@ -183,7 +183,7 @@ The "early stop" is used when to training more EPOCH when validation accuracy is
 
 Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
 First Image, predict correctly in two models:
-
+|       Model accuracy of 0.93  |
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.00000000e+00        			| 17, No entry   									| 
