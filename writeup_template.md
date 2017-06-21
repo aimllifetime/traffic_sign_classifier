@@ -174,7 +174,7 @@ when the model accuracy is of 0.954, it correctly classified 3 out of 5 web imag
 
 The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. Following are the top five soft max probabilities when model accuracy is of 0.93 and 0.954 with web image predication of accuracy of 20% and 60% respectively. 
+For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. When model accuracy of 0.93 and 0.954, the predication of accuracy for web image increases to 60% from 20%. 
 
 The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. The speed limit of 100 is not predicted correctly in both cases. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of 100 only, it still does not work. It does predict of 120km sign though.
 
@@ -185,8 +185,6 @@ Below is the softmax for model is of 0.954 accuracy.
 ![](./result_images/top_5.png)
 
 Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
-
-
 
 
 First Image, predict correctly in two models as "No Entry" of probability of 1.0:
@@ -200,6 +198,7 @@ First Image, predict correctly in two models as "No Entry" of probability of 1.0
 | 5.05295512e-13			    | 6,Go straight or right     							| 1.85667250e-15 | 29,Bicycles crossing |
 
 
+
 For the second image it correctly predicted to "Pedestrains" when model is of accuracy 0.954
 
 | Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
@@ -211,6 +210,7 @@ For the second image it correctly predicted to "Pedestrains" when model is of ac
 | 1.32864966e-06			    | 40,Roundabout mandatory    							|1.45142544e-02| 20,Dangerous curve to the right |
 
 
+
 for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are four softmax close to speed limit detection. however, the highest priority is of 120km/h rather than the right one 100km/h.
 
 | Probability (model accuracy 0.93)|Prediction	(model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954) |
@@ -220,6 +220,8 @@ for the third image: speed_limit_100_cropped.jpg, in model of 0.954, there are f
 | 2.07091823e-01					| 1,Speed limit (30km/h)						| 2.78585199e-02 | 7,Speed limit (100km/h) 
 | 1.69023097e-01	      			|2,Speed limit (50km/h)			 				| 2.02781558e-02 | 5,Speed limit (80km/h) |
 | 3.13728116e-02			    | 38,Keep right    							| 1.68899670e-02 | 3,Speed limit (60km/h)|
+
+
 
 for the fourth image "go straight or right", the model accuracy helps to predict correctly. it was second position when in model of 0.93 and now moves to top one softmax position.
 
