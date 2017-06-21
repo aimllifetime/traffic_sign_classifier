@@ -39,7 +39,9 @@ Use python array "len" fuction on X_train and other variables, we have following
 
 Used "Pandas" library to plot the distribution of each class' count. 
 
-<a href="url"><img src="https://github.com/aimllifetime/traffic_sign_classifier/blob/master/result_images/distributiion_of_each_class.png" align="left" height="100" width="100" ></a>
+<a href="url"><img src="https://github.com/aimllifetime/traffic_sign_classifier/blob/master/result_images/distributiion_of_each_class.png" align="left" height="1000" width="1000" ></a>
+
+
 ![Distribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
 
 Note the class 27 has very small training examples, i.e. only has 210 training examples
