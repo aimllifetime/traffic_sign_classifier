@@ -41,12 +41,13 @@ Used "Pandas" library to plot the distribution of each class' count.
 
 <a href="url"><img src="https://github.com/aimllifetime/traffic_sign_classifier/blob/master/result_images/distributiion_of_each_class.png" align="left" height="500" width="2000" ></a>
 
+Large image is at:
+https://raw.githubusercontent.com/aimllifetime/traffic_sign_classifier/master/result_images/distributiion_of_each_class.png
 
-![Distribution of Sample Count per Class] (./result_images/distributiion_of_each_class.png)
 
 Note the class 27 has very small training examples, i.e. only has 210 training examples
 
-About half of the classes has less than 500 training example. it might be good idea to do data augmentation to create more training images.
+About half of the classes have less than 500 training example in each class. it might be good idea to do data augmentation to create more training images.
 
 Then, randomly pick one image index 33801 out of training example and plot it to see visually.
 
@@ -174,24 +175,27 @@ when the model accuracy is of 0.954, it correctly classified 3 out of 5 web imag
 
 The code for making predictions on my final model is located in the 20th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. When model accuracy of 0.93 and 0.954, the predication of accuracy for web image increases to 60% from 20%. 
+When model accuracy increases from 0.93 to 0.954, the predication of accuracy for web image increases to 60% from 20%. For the first image "No Entry", the model is relatively sure that this is a no entry sign (probability of 1.0), and the image does contain a no entry sign. The model accuracy of 0.954 greatly helps to predict correclty the **pedestrain** and **go straight or right** sign.
 
-The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. The speed limit of 100 is not predicted correctly in both cases. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of 100 only, it still does not work. It does predict of 120km sign though.
+The "early stopping" training in EPOCH iteration is used when validation accuracy is reached above 0.95.
 
-The model accuracy of 0.954 greatly help to predict correclty the **pedestrain** and **go straight or right** sign.
-The "early stop" is used when to training more EPOCH when validation accuracy is reached above 0.95.
+The "bicycle_crossing_right_of_road.jpg" is not classified correctly. it could be that the background of picture has lots of clouds and cause it not clear. Clouds makes the prediction hard. It could be mislabelled as analyzed below for 5th image. 
+
+The speed limit of 100 is not predicted correctly in both models. First I thought the road and grass in the picture caused the misclassification. However, even I did the crop of "100" sign only, it still does not work. It does predict of 120km sign though.
+
+
 
 Below is the softmax for model is of 0.954 accuracy.
 ![](./result_images/top_5.png)
 
-Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy.
+Following gives out the softmax of prediction when model is of 0.93 and 0.954 accuracy. Correct prediction is highlight in bold.
 
 
 First Image, predict correctly in two models as "No Entry" of probability of 1.0:
 
 | Probability (model accuracy 0.93)|Prediction (model accuracy 0.93)| Probability (model accuracy 0.954) | Prediction(model accuracy 0.954)
 |:---------------------:|:---------------------------------------------:|:---------------------:|:---------------------|
-| 1.00000000e+00        			| 17, No entry   									| 1.00000000e+00 | **17, No entry**  |
+| 1.00000000e+00        			| **17, No entry**  									| 1.00000000e+00 | **17, No entry**  |
 | 7.89568324e-12   				| 14, stop										| 3.29774152e-14 | 33,Turn right ahead |
 | 2.66821244e-12					| 39, keep left										| 1.44279391e-14 | 0,Speed limit (20km/h) |
 | 2.12974451e-12	      			|0,Speed limit (20km/h)				 				| 2.23995894e-15 |  14, stop	 |
